@@ -18,7 +18,7 @@ Add it in your root build.gradle at the end of repositories:
 Step 2. Add the dependency
 
 	dependencies {
-	        implementation 'com.github.sharathvbhargav:Svb_log:0.0.1'
+	        https://jitpack.io
 	}
 	
 To use Custom Toast in your project:
