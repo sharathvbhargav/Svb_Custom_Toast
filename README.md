@@ -78,6 +78,8 @@ Example:
 		-120,
 		300);
 		
+Note: For Custom Toast send array of colors
+
 	final int[] color = new int[] {
 		Color.parseColor("#b5b6d2"),
 		Color.parseColor("#112233"),
