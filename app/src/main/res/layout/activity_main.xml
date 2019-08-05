@@ -5,13 +5,50 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity"
     android:orientation="vertical"
-    android:gravity="center">
+    android:gravity="top"
+    android:layout_margin="10dp">
 
     <Button
-        android:id="@+id/button"
-        android:layout_width="wrap_content"
+        android:id="@+id/btn_regular_toast"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Show Regular Toast"
+        android:layout_gravity="center"
+        android:background="@drawable/gradient_button"
+        android:layout_margin="10dp"
+        android:textStyle="bold"
+        android:textSize="16sp"/>
+
+    <Button
+        android:id="@+id/btn_regular_toast_with_length"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Show Regular Toast with Length"
+        android:layout_gravity="center"
+        android:background="@drawable/gradient_button"
+        android:layout_margin="10dp"
+        android:textStyle="bold"
+        android:textSize="16sp"/>
+
+    <Button
+        android:id="@+id/btn_custom_toast"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Show Custom Toast"
-        android:layout_gravity="center"/>
+        android:layout_gravity="center"
+        android:background="@drawable/gradient_button"
+        android:layout_margin="10dp"
+        android:textStyle="bold"
+        android:textSize="16sp"/>
 
+    <Button
+        android:id="@+id/btn_custom_toast_with_position"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Show Custom Toast with Position"
+        android:layout_gravity="center"
+        android:background="@drawable/gradient_button"
+        android:layout_margin="10dp"
+        android:textStyle="bold"
+        android:textSize="16sp"/>
 </LinearLayout>

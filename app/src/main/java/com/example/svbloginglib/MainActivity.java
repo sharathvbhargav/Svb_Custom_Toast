@@ -6,32 +6,50 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-import com.example.svbloglib.Svb;
 import com.example.svbloglib.SvbToast;
 
-public class MainActivity extends AppCompatActivity {
-    Button button;
+public class MainActivity extends AppCompatActivity implements View.OnClickListener{
+    Button regularToast, regularToastWithLength, customToast, customToastWithPosition;
+    private int[] color;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        button = findViewById(R.id.button);
-        final int[] color = new int[] {
+        regularToast = findViewById(R.id.btn_regular_toast);
+        regularToastWithLength = findViewById(R.id.btn_regular_toast_with_length);
+        customToast = findViewById(R.id.btn_custom_toast);
+        customToastWithPosition = findViewById(R.id.btn_custom_toast_with_position);
+
+        color = new int[] {
                 Color.parseColor("#b5b6d2"),
                 Color.parseColor("#112233"),
                 Color.parseColor("#b5b6d2")};
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                SvbToast.showToast(
-                    MainActivity.this,
-                    "Am your custom toast",
-                    getResources().getDrawable(R.drawable.error),
-                    50,
-                    color,
-                    true);
-            }
-        });
+
+        regularToast.setOnClickListener(this);
+        regularToastWithLength.setOnClickListener(this);
+        customToast.setOnClickListener(this);
+        customToastWithPosition.setOnClickListener(this);
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.btn_regular_toast:
+                SvbToast.showToast(MainActivity.this, "Am your regular toast");
+                break;
+
+            case R.id.btn_regular_toast_with_length:
+                SvbToast.showToast(MainActivity.this, "Am your regular toast with Length", true);
+                break;
+
+            case R.id.btn_custom_toast:
+                SvbToast.showToast(MainActivity.this, "Am your custom toast", getResources().getDrawable(R.drawable.error), 50, color, true);
+                break;
+
+            case R.id.btn_custom_toast_with_position:
+                SvbToast.showToast(MainActivity.this, "Am your custom toast with Position", null, 30, color, true, -120, 500);
+                break;
+        }
     }
 }
