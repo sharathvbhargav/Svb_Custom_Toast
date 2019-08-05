@@ -22,33 +22,37 @@ Step 2. Add the dependency
 	}
 	
 To use Custom Toast in your project:
-1. Regular Toast	
-	SvbToast.showToast(Context: context, String: message);
+1. Regular Toast
+
+		SvbToast.showToast(Context: context, String: message);
 		
 2. Regular Toast With Length
-	SvbToast.showToast(Context: context, String: message, Boolean isLongToast);
+
+		SvbToast.showToast(Context: context, String: message, Boolean isLongToast);
 
 3. Custom Toast
-	SvbToast.showToast(
-		Context: Application Context,
-		String: Message to display,
-		Drawable: Drawable Icon (null if icon is not needed),
-		Int: Corner Radius for toast window,
-		Int[]: Array of colors,
-		Boolean: IsLongToast (true: Toast.LENGTH_LONG, false: Toast.LENGTH_SHORT) 
-	);
+	
+		SvbToast.showToast(
+			Context: Application Context,
+			String: Message to display,
+			Drawable: Drawable Icon (null if icon is not needed),
+			Int: Corner Radius for toast window,
+			Int[]: Array of colors,
+			Boolean: IsLongToast (true: Toast.LENGTH_LONG, false: Toast.LENGTH_SHORT) 
+		);
 	
 4. Custom Toast in desired position (X,Y)
-	SvbToast.showToast(
-		Context: Application Context,
-		String: Message to display,
-		Drawable: Drawable Icon (null if icon is not needed),
-		Int: Corner Radius for toast window,
-		Int[]: Array of colors,
-		Boolean: IsLongToast (true: Toast.LENGTH_LONG, false: Toast.LENGTH_SHORT) 
-		Int: PositionX
-		Int: PositionY
-	);
+	
+		SvbToast.showToast(
+			Context: Application Context,
+			String: Message to display,
+			Drawable: Drawable Icon (null if icon is not needed),
+			Int: Corner Radius for toast window,
+			Int[]: Array of colors,
+			Boolean: IsLongToast (true: Toast.LENGTH_LONG, false: Toast.LENGTH_SHORT) 
+			Int: PositionX
+			Int: PositionY
+		);
 		
 Example:
 
