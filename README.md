@@ -1,4 +1,4 @@
-# Svb_log
+# Svb_Custom_Toast
 
 Simple Custom Toast with image and text
 
