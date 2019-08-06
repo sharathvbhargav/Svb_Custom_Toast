@@ -1,8 +1,11 @@
 package com.example.svbloglib;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
+import android.os.Handler;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,70 +15,92 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class SvbToast {
-    //Hi
-    public static void showToast(Context context, String message){
-        if(message != null){
-            Toast.makeText(context, message, Toast.LENGTH_LONG).show();
-        } else {
-            Toast.makeText(context, "", Toast.LENGTH_LONG).show();
-        }
+    private static Toast toast;
+    private static Handler handler = new Handler();
+
+    public static void showToast(ToastParams toastParams){
+        createCustomToast(toastParams);
     }
 
-    public static void showToast(Context context, String message, boolean isLingToast){
-        if(message != null){
-            if(isLingToast) {
-                Toast.makeText(context, message, Toast.LENGTH_LONG).show();
-            } else {
-                Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
-            }
-        } else {
-            Toast.makeText(context, "", Toast.LENGTH_LONG).show();
-        }
-    }
-
-    public static void showToast(Context context, String message, Drawable icon, int cornerRadius, int[] color, boolean isLongToast){
-        createCustomToast(context, message, icon, cornerRadius, color, isLongToast, 0, 0);
-    }
-
-    public static void showToast(Context context, String message, Drawable icon, int cornerRadius, int[] color, boolean isLongToast, int positionX, int positionY) {
-        createCustomToast(context, message, icon, cornerRadius, color, isLongToast, positionX, positionY);
-    }
-
-    private static void createCustomToast(Context context, String message, Drawable icon, int cornerRadius, int[] color, boolean isLongToast, int positionX, int positionY){
-        LayoutInflater inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+    public static void createCustomToast(ToastParams toastParams){
+        toast = new Toast(toastParams.context);
+        LayoutInflater inflater = (LayoutInflater)toastParams.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View layout = inflater.inflate(R.layout.layout_custom_toast, null);
         ImageView image = layout.findViewById(R.id.image);
+        TextView text = layout.findViewById(R.id.text);
+        LinearLayout rootLayout = layout.findViewById(R.id.toast_layout_root);
+        GradientDrawable gd;
+        int[] color = new int[]{};
+        int toastLength, positionX=0, positionY=0, timeInMillis=0, cornerRadius = 30;
 
-        if(icon != null) {
-            image.setImageDrawable(icon);
+        //If Text is provided then show that text by setting it to text view. Else set ""
+        if (toastParams.getMessage() == null || toastParams.getMessage().equals("")) {
+            text.setText("");
+        } else {
+            text.setText(toastParams.getMessage());
+        }
+
+        //If Drawable image provided with the model then set it to toast else set visibility to GONE
+        if (toastParams.getIcon() == null) {
+            image.setVisibility(View.GONE);
+        } else {
+            image.setImageDrawable(toastParams.getIcon());
+        }
+
+        //If Array of colors and corner radius provided apply those params else apply default
+        if(toastParams.getGradientColors()!= null && toastParams.getGradientColors().length > 0) {
+            if(toastParams.getGradientColors().length == 1){
+                color = new int[]{color[0], color[0]};
+                toastParams.setGradientColors(color);
+            }
         }
         else {
-            image.setVisibility(View.GONE);
+            color = new int[]{Color.parseColor("#EDEDED"),Color.parseColor("#EDEDED")};
+            toastParams.setGradientColors(color);
         }
 
-        //If only 1 color sent keep second color also as same as first one
-        if(color.length == 1){
-            color = new int[]{color[0], color[0]};
+        //If Corner radius is provided then set else set default 30
+        if (toastParams.getCornerRadius() != 0) {
+            cornerRadius = toastParams.getCornerRadius();
         }
 
-        TextView text = layout.findViewById(R.id.text);
-        text.setText(message);
-        LinearLayout rootLayout = layout.findViewById(R.id.toast_layout_root);
+        //If Text color is provided then apply the color else apply default color
+        if(toastParams.getTextColor() == 0){
+            text.setTextColor(Color.parseColor("#1F1F1F"));
+        }
+        else {
+            text.setTextColor(toastParams.getTextColor());
+        }
 
-        GradientDrawable gd = new GradientDrawable(GradientDrawable.Orientation.TOP_BOTTOM, color);
+        //If Long toast set to true then set long toast else set Short toast
+        if(toastParams.isLongToast){
+            toastLength = Toast.LENGTH_LONG;
+        }
+        else {
+            toastLength = Toast.LENGTH_SHORT;
+        }
+
+        //If Position for X axis is given then set position else keep default 0
+        if(toastParams.getPositionX() != 0){
+            positionX = toastParams.getPositionX();
+        }
+
+        //If Position for Y axis is given then set position else keep default 0
+        if(toastParams.getPositionY() != 0){
+            positionY = toastParams.getPositionY();
+        }
+
+        if(toastParams.getTimeInMillis() != 0){
+            timeInMillis = toastParams.getTimeInMillis();
+        }
+
+        gd = new GradientDrawable(GradientDrawable.Orientation.TOP_BOTTOM, toastParams.getGradientColors());
         gd.setCornerRadius(cornerRadius);
         rootLayout.setBackgroundDrawable(gd);
 
-        final Toast toast = new Toast(context);
         toast.setGravity(Gravity.CENTER|Gravity.BOTTOM, positionX, positionY);
-        toast.setDuration(Toast.LENGTH_LONG);
+        toast.setDuration(toastLength);
         toast.setView(layout);
-        if(isLongToast) {
-            toast.setDuration(Toast.LENGTH_LONG);
-        }
-        else {
-            toast.setDuration(Toast.LENGTH_SHORT);
-        }
         toast.show();
     }
 }

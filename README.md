@@ -22,63 +22,37 @@ Step 2. Add the dependency
 	}
 	
 To use Custom Toast in your project:
-1. Regular Toast
 
-		SvbToast.showToast(Context: context, String: message);
-		
-2. Regular Toast With Length
+    ToastParams toastParams = new ToastParams(Context: context);
 
-		SvbToast.showToast(Context: context, String: message, Boolean isLongToast);
+    toastParams.setMessage(String: message);
+    toastParams.setIcon(Drawable: drawable);
+    toastParams.setCornerRadius(Int: integer);
+    toastParams.setGradientColors(Int[]: array of integers);
+    toastParams.setTextColor(Int: integer);
+    toastParams.setLongToast(Boolean: true/false);
+    toastParams.setPositionX(Int: integer);
+    toastParams.setPositionY(Int: integer);
 
-3. Custom Toast
-	
-		SvbToast.showToast(
-			Context: Application Context,
-			String: Message to display,
-			Drawable: Drawable Icon (null if icon is not needed),
-			Int: Corner Radius for toast window,
-			Int[]: Array of colors,
-			Boolean: IsLongToast (true: Toast.LENGTH_LONG, false: Toast.LENGTH_SHORT) 
-		);
-	
-4. Custom Toast in desired position (X,Y)
-	
-		SvbToast.showToast(
-			Context: Application Context,
-			String: Message to display,
-			Drawable: Drawable Icon (null if icon is not needed),
-			Int: Corner Radius for toast window,
-			Int[]: Array of colors,
-			Boolean: IsLongToast (true: Toast.LENGTH_LONG, false: Toast.LENGTH_SHORT) 
-			Int: PositionX
-			Int: PositionY
-		);
-		
+    SvbToast.showToast(toastParams);
+
 Example:
 
-	1. SvbToast.showToast(MainActivity.this, "Am your regular toast");
-	
-	2.SvbToast.showToast(MainActivity.this, "Am your regular toast with Length", true);
+    ToastParams toastParams = new ToastParams(MainActivity.this);
 
-	3.SvbToast.showToast(
-		MainActivity.this,
-		"Am your custom toast",
-		getResources().getDrawable(R.drawable.error),
-		50,
-		color,
-		true);
+    toastParams.setMessage("Hi am your Custom Toast");
+    toastParams.setIcon(getResources().getDrawable(R.drawable.error));
+    toastParams.setCornerRadius(50);
+    toastParams.setGradientColors(color);
+    toastParams.setTextColor(Color.WHITE);
+    toastParams.setLongToast(true);
+    toastParams.setPositionX(-120);
+    toastParams.setPositionY(500);
+
+    SvbToast.showToast(toastParams);
+
 		
-	4. SvbToast.showToast(
-		MainActivity.this,
-		"Am your custom toast",
-		getResources().getDrawable(R.drawable.error),
-		50,
-		color,images/
-		true,
-		-120,
-		300);
-		
-Note: For Custom Toast send array of colors
+Array of colors
 
 	final int[] color = new int[] {
 		Color.parseColor("#b5b6d2"),
