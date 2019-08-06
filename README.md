@@ -73,7 +73,7 @@ Example:
 		"Am your custom toast",
 		getResources().getDrawable(R.drawable.error),
 		50,
-		color,
+		color,images/
 		true,
 		-120,
 		300);
@@ -84,3 +84,8 @@ Note: For Custom Toast send array of colors
 		Color.parseColor("#b5b6d2"),
 		Color.parseColor("#112233"),
 		Color.parseColor("#b5b6d2")};
+		
+	
+Screenshots:
+
+<img src="images/toast_one.jpg" width="220" height="400">  <img src="images/toast_two.jpg" width="220" height="400">  <img src="images/toast_three.jpg" width="220" height="400">  <img src="images/toast_four.jpg" width="220" height="400">
