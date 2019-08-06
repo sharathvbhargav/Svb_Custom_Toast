@@ -12,6 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class SvbToast {
+    //Hi
     public static void showToast(Context context, String message){
         if(message != null){
             Toast.makeText(context, message, Toast.LENGTH_LONG).show();
