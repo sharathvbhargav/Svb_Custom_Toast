@@ -88,4 +88,4 @@ Note: For Custom Toast send array of colors
 	
 Screenshots:
 
-<img src="images/toast_one.jpg" width="220" height="400">  <img src="images/toast_two.jpg" width="220" height="400">  <img src="images/toast_three.jpg" width="220" height="400">  <img src="images/toast_four.jpg" width="220" height="400">
+<img src="images/toast_one.jpg" width="200" height="360">  <img src="images/toast_two.jpg" width="200" height="360">  <img src="images/toast_three.jpg" width="200" height="360">  <img src="images/toast_four.jpg" width="200" height="360">
